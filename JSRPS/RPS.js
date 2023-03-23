@@ -1,15 +1,9 @@
 let playerScore = 0;
 let computerScore = 0;
-//Array of possible choices
+//Array of possible computer choices
 let gameChoices = ['Rock','Paper','Scissor']
 
-// user input and convert to lower case
-let playerSelection = prompt("User selection!");
-playerSelection = playerSelection.toLowerCase();
-
-let computerSelection = getComputerChoice();
-
-// get computer
+// function to get computer choice
 function getComputerChoice(){
 
 return(gameChoices[(Math.random() * gameChoices.length) | 0].toLowerCase());
@@ -19,7 +13,6 @@ return(gameChoices[(Math.random() * gameChoices.length) | 0].toLowerCase());
 
 function playRound(playerSelection,computerSelection){
 
-    getComputerChoice();
     // check for rock vs Computer selection
     if(playerSelection == "rock"){
         if(computerSelection == "rock"){
@@ -72,17 +65,35 @@ function playRound(playerSelection,computerSelection){
 
     }
     
-    
+    console.log("Player Score :" + " " +playerScore + " " + "Computer Score" + " " + computerScore);
 
 
 }
 
 function game(){
-    playRound(playerSelection,computerSelection);
-    playRound(playerSelection,computerSelection);
-    playRound(playerSelection,computerSelection);
-    playRound(playerSelection,computerSelection);
-    playRound(playerSelection,computerSelection);
+    
+    for(let i = 0; i<5; i++){ // for loop for 5 games
+
+        // grab new player & computer choice every iteration
+        //grab user choice from prompt, convert input to lowercase
+        let playerSelection = prompt("User selection!");
+        playerSelection = playerSelection.toLowerCase();
+        
+        let computerSelection = getComputerChoice();
+
+        //run playRound function to compare Player & Computer choice
+        playRound(playerSelection,computerSelection);
+    }
+
+        // if/else to output the winner
+    if(playerScore > computerScore)
+    {
+        console.log("Congrats! Player won!");
+    }
+    else{
+
+        console.log("Booooooo, Computer won!");
+    }
 
 
 }
@@ -90,7 +101,7 @@ function game(){
 
 
 
-console.log(playerSelection + " " + computerSelection);
-playRound(playerSelection,computerSelection);
-console.log ("Player Score : "+ playerScore + " " + "Computer Score : " + computerScore);
-//game();
+//console.log(playerSelection + " " + computerSelection);
+//playRound(playerSelection,computerSelection);
+//console.log ("Player Score : "+ playerScore + " " + "Computer Score : " + computerScore);
+game();
